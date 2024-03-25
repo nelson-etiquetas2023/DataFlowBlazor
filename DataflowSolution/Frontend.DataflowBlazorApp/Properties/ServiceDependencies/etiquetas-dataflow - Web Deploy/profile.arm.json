@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "DataflowBlazorApp",
+      "defaultValue": "etiquetas-dataflow",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
