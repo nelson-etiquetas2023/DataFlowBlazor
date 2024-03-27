@@ -13,6 +13,9 @@ namespace Shared.DataflowBlazorApp.Models
         public double Price { get; set; }
         public string Category { get; set; } = null!;
         public string Presentation { get; set; } = null!;
+        public string imagen { get; set; } = null!;
+        public Boolean IsActive { get; set; }
+        public Boolean IsService { get; set; }
 
     }
 }
