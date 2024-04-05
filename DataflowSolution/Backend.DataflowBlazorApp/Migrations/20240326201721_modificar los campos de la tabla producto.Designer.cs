@@ -12,7 +12,7 @@ namespace Backend.DataflowBlazorApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20240326201721_modificar los campos de la tabla producto")]
-    partial class modificarloscamposdelatablaproducto
+    partial class Modificarloscamposdelatablaproducto
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

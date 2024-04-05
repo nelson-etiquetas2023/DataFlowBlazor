@@ -5,7 +5,7 @@
 namespace Backend.DataflowBlazorApp.Migrations
 {
     /// <inheritdoc />
-    public partial class modificarloscamposdelatablaproducto : Migration
+    public partial class Modificarloscamposdelatablaproducto : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
