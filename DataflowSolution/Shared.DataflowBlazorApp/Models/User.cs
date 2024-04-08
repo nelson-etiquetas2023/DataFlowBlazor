@@ -10,6 +10,9 @@ namespace Shared.DataflowBlazorApp.Models
         [MaxLength(10, ErrorMessage = "El campo de id del usuario debe tener un maximo {1} caracteres.")]
         public string UserId { get; set; } = string.Empty;
 
+
+        public string Document { get; set; } = string.Empty;
+
         [Display(Name = "Nombres")]
         [MaxLength(50, ErrorMessage = "el campo {0} debe tener un maximo {1} caracteres.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]

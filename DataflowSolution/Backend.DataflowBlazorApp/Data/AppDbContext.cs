@@ -8,5 +8,6 @@ namespace Backend.DataflowBlazorApp.Data
     public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<User>(options)
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Country> Countries { get; set; }
     } 
 }
