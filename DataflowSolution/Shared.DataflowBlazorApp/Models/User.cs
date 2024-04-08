@@ -31,15 +31,8 @@ namespace Shared.DataflowBlazorApp.Models
         [Display(Name = "Tipo de Usuario")]
         public UserType UserType { get; set; }
 
-
         [Display(Name = "Usuario")]
         public string FullName => $"{FirstName} {LastName}";
-
-
-
-
-
-
 
     }
 }

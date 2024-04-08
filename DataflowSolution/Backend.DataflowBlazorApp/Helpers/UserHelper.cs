@@ -1,45 +1,47 @@
 ﻿using Backend.DataflowBlazorApp.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Shared.DataflowBlazorApp.Models;
 
 namespace Backend.DataflowBlazorApp.Helpers
 {
-    public class UserHelper : IUserHelper
+    public class UserHelper(AppDbContext context, UserManager<User> useManager, RoleManager<IdentityRole> roleManager) : IUserHelper
     {
-        private readonly AppDbContext _context;
-        private readonly UserManager<User> _useManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly AppDbContext _context = context;
+        private readonly UserManager<User> _useManager = useManager;
+        private readonly RoleManager<IdentityRole> _roleManager = roleManager;
 
-        public UserHelper(AppDbContext context, UserManager<User> useManager, RoleManager<IdentityRole> roleManager)
+        public async Task<IdentityResult> AddUserAsync(User user, string password)
         {
-            _context = context;
-            _useManager = useManager;
-            _roleManager = roleManager;
+            return await _useManager.CreateAsync(user, password);
         }
 
-        public Task<IdentityResult> AddUserAsync(User user, string password)
+        public async Task AddUserToRoleAsync(User user, string roleName)
         {
-            throw new NotImplementedException();
+            await _useManager.AddToRoleAsync(user, roleName);
         }
 
-        public Task AddUserToRoleAsync(User user, string roleName)
+        public async Task CheckRoleAsync(string roleName)
         {
-            throw new NotImplementedException();
+            bool roleExists = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExists) 
+            {
+                await _roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = roleName
+                });
+            }
         }
 
-        public Task CheckRoleAsync(string rolename)
+        public async Task<User> GetUserAsync(string email)
         {
-            throw new NotImplementedException();
+            var query = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            return query!;
         }
 
-        public Task<User> GetUserAsync(string email)
+        public async Task<bool> IsUserInRoleAsync(User user, string roleName)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> IsUserInRoleAsync(User user, string roleName)
-        {
-            throw new NotImplementedException();
+            return await _useManager.IsInRoleAsync(user, roleName);
         }
     }
 }
